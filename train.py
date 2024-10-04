@@ -229,7 +229,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 # %cd {HOME}
 
 # settings
-MAX_EPOCHS = 1
+MAX_EPOCHS = 50
 
 trainer = Trainer(devices=1, accelerator="gpu", max_epochs=MAX_EPOCHS, gradient_clip_val=0.1, accumulate_grad_batches=8, log_every_n_steps=5)
 
