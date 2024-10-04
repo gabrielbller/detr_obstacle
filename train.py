@@ -3,16 +3,6 @@ import supervision
 import transformers
 import pytorch_lightning
 
-"""## Inference with pre-trained COCO model
-
-### Download Data
-"""
-
-import os
-
-IMAGE_NAME = "dog.jpeg"
-IMAGE_PATH = IMAGE_NAME
-
 """### Load Model"""
 
 import torch
@@ -30,13 +20,13 @@ image_processor = DetrImageProcessor.from_pretrained(CHECKPOINT)
 import os
 import torchvision
 
-dataset = type('dataset', (object,), {})()  # Create a simple object to hold the location attribute
-dataset.location = 'C:\\Users\\gabri\\datasets\\Obstacle-detection-11'
+# caminho onde o dataset for instalado
+dataset = 'C:/Users/gabri/datasets/Obstacle-detection-11'
 # settings
 ANNOTATION_FILE_NAME = "_annotations.coco.json"
-TRAIN_DIRECTORY = os.path.join(dataset.location, "train")
-VAL_DIRECTORY = os.path.join(dataset.location, "valid")
-TEST_DIRECTORY = os.path.join(dataset.location, "test")
+TRAIN_DIRECTORY = os.path.join(dataset, "train")
+VAL_DIRECTORY = os.path.join(dataset, "valid")
+TEST_DIRECTORY = os.path.join(dataset, "test")
 
 
 class CocoDetection(torchvision.datasets.CocoDetection):
@@ -243,11 +233,7 @@ MAX_EPOCHS = 1
 
 trainer = Trainer(devices=1, accelerator="gpu", max_epochs=MAX_EPOCHS, gradient_clip_val=0.1, accumulate_grad_batches=8, log_every_n_steps=5)
 
-model.train()
-
 trainer.fit(model)
 
 MODEL_PATH = 'outputs'
 model.model.save_pretrained(MODEL_PATH)
-
-

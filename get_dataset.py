@@ -3,6 +3,7 @@ from roboflow import Roboflow
 
 
 ROBOFLOW_API_KEY = input('Enter ROBOFLOW_API_KEY secret value: ')
+# api key = uqTXlACGPeIn0KqpFHb7
 
 os.makedirs(os.path.expanduser('~/datasets'), exist_ok=True)
 os.chdir(os.path.expanduser('~/datasets'))
